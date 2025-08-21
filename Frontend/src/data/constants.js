@@ -193,7 +193,7 @@ export const members = [
     designation: 'I M.Sc Mathematics at SSSIHL',
     summary: 'Member of the Club',
     image: '/images/Prashanth.png',
-    // linkedin: 'https://www.linkedin.com/in/prashant-poudyal-a02230325/'
+    linkedin: 'https://www.linkedin.com/in/prashant-poudyal-a02230325/'
   },
   {
     name: 'Narasimha Murthy',
@@ -214,7 +214,7 @@ export const members = [
     designation: 'I M.Sc Mathematics at SSSIHL',
     summary: 'Member of the Club',
     image: '/images/Subhashish.png',
-    // linkedin: 'https://www.linkedin.com/in/narasimha-murthy-123456789/'
+    linkedin: 'https://www.linkedin.com/in/subhasish-charan-behera-a43b6b254/'
   },
   
 ];
