@@ -42,7 +42,10 @@ const EventsPage = () => {
       <p className="tab-desc">Join our upcoming workshops, hackathons, and seminars.</p>
 
       {loading ? (
-        <p>Loading events...</p>
+        <div style={{ textAlign: 'center', margin: '2rem 0' }}>
+          <span className="spinner" />
+          <div style={{ marginTop: '0.5rem', color: '#38bff8', fontWeight: 'bold' }}>Loading...</div>
+        </div>
       ) : events.length === 0 ? (
         <p>No events found.</p>
       ) : (
