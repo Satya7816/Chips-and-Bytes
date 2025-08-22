@@ -31,13 +31,16 @@ const API_URL = `${process.env.REACT_APP_BACKEND_URL}/api/announcements`;
 
 const HomePage = () => {
   const [announcements, setAnnouncements] = useState([]);
+  const [loadingAnnouncements, setLoadingAnnouncements] = useState(true);
 
   useEffect(() => {
     fetch(API_URL)
       .then(res => res.json())
       .then(data => {
         setAnnouncements(data || []);
-      });
+        setLoadingAnnouncements(false);
+      })
+      .catch(() => setLoadingAnnouncements(false));
   }, []);
 
   return (
@@ -77,9 +80,11 @@ const HomePage = () => {
         <div className="announcements-bar">
           <div className="scroll-text">
             <span className="announcement-highlight">Latest Updates: </span>
-            {announcements.length > 0
-              ? announcements.map(a => a.text).join(' | ')
-              : 'No announcements yet.'}
+            {loadingAnnouncements
+              ? 'Loading announcements...'
+              : (announcements.length > 0
+                  ? announcements.map(a => a.text).join(' | ')
+                  : 'No announcements yet.')}
           </div>
         </div>
       </div>
