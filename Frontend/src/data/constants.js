@@ -137,7 +137,7 @@ export const members = [
     designation: 'I M.Tech CS at SSSIHL',
     summary: 'Vice-President of the Club',
     image: '/images/Chirag.png',
-    linkedin: 'https://www.linkedin.com/in/panuganti-chirag-sai-atjxhn8g/'
+    linkedin: 'https://www.linkedin.com/in/panuganti-chirag-sai/'
   },
   {
     name: 'K Sharat',
