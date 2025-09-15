@@ -30,8 +30,10 @@ export const blogLinks = [
   "https://medium.com/@saratgandholi/tracing-code-execution-part-2-from-theory-to-real-world-impact-7e7c3a8bafaa",
   "https://medium.com/@ssaketh.2002/cuda-chronicles-programming-model-2-3025daa389bc",
   "https://medium.com/@saratgandholi/why-your-computer-is-basically-a-lazy-teenager-c7e805830b83",
+  "https://medium.com/@panugantichiragsai12/memory-around-us-lpddr-part-3-0f479b00fb17",
   "https://medium.com/@saratgandholi/multithreading-why-your-computer-is-basically-a-group-project-3764e3065c1f",
   "https://medium.com/@ssaketh.2002/cuda-chronicles-programming-interface-3-part-1-021dec1d231c",
+  "https://medium.com/@panugantichiragsai12/memory-around-us-gddr-part-1-5e80fa462991",
 ];
 
 // List of featured GitHub project links for the Projects section and carousel
