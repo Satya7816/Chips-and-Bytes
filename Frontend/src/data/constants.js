@@ -41,7 +41,7 @@ export const blogLinks = [
 // List of featured GitHub project links for the Projects section and carousel
 export const gitLinks = [
   { url: "https://github.com/GandholiSarat/DynamoRIO-Custom-Client" },
-  { url: "https://github.com/Chirag-Sai-Panuganti/ReLMXEL-Adaptive-RL-Based-Memory-Controller-with-Explainable-Energy-and-Latency-Optimization" },
+  { url: "https://github.com/Chirag-Sai-Panuganti/ReLMXEL" },
 ];
 
 // Array of mentor profiles for the Mentors section
