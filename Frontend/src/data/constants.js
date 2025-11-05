@@ -34,11 +34,14 @@ export const blogLinks = [
   "https://medium.com/@saratgandholi/multithreading-why-your-computer-is-basically-a-group-project-3764e3065c1f",
   "https://medium.com/@ssaketh.2002/cuda-chronicles-programming-interface-3-part-1-021dec1d231c",
   "https://medium.com/@panugantichiragsai12/memory-around-us-gddr-part-1-5e80fa462991",
+  "https://medium.com/@panugantichiragsai12/memory-around-us-gddr-part-2-b714e9a7fce1",
+  "https://medium.com/@panugantichiragsai12/memory-around-us-gddr-part-3-9f3ca7cfc9fa",
 ];
 
 // List of featured GitHub project links for the Projects section and carousel
 export const gitLinks = [
   { url: "https://github.com/GandholiSarat/DynamoRIO-Custom-Client" },
+  { url: "https://github.com/Chirag-Sai-Panuganti/ReLMXEL-Adaptive-RL-Based-Memory-Controller-with-Explainable-Energy-and-Latency-Optimization" },
 ];
 
 // Array of mentor profiles for the Mentors section
