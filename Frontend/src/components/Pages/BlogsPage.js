@@ -135,7 +135,7 @@ const BlogsPage = () => {
         slider.removeEventListener('touchend', handleTouchEnd);
       }
     };
-  }, [blogs, isMobile, touchStart, canScrollLeft, canScrollRight]);
+  }, [blogs, isMobile, touchStart, canScrollLeft, canScrollRight, handleTouchMove]);
 
   return (
     <div className="blogs-page">
