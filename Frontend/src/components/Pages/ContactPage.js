@@ -47,7 +47,7 @@ const ContactPage = () => {
     if (Object.keys(touched).length > 0) {
       setErrors(validate());
     }
-  }, [formData]);
+  }, [formData, touched, validate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

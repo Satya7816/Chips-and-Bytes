@@ -17,7 +17,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { gitLinks } from '../../data/constants';
 import { FaGithub } from 'react-icons/fa';
 import './ProjectsPage.css';
@@ -138,13 +137,13 @@ const ProjectsPage = () => {
         slider.removeEventListener('touchend', handleTouchEnd);
       }
     };
-  }, [projectData, isMobile, touchStart, canScrollLeft, canScrollRight]);
+  }, [projectData, isMobile, touchStart, canScrollLeft, canScrollRight, handleTouchMove]);
 
   return (
     <div className="Projects-page">
       <h1 className="tab-heading">Projects</h1>
       <p className="tab-desc">
-        Read articles and tutorials written by our community members.
+        Explore projects built by our community members.
       </p>
 
       {loading ? (
