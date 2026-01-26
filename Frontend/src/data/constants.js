@@ -42,6 +42,7 @@ export const blogLinks = [
 export const gitLinks = [
   { url: "https://github.com/GandholiSarat/DynamoRIO-Custom-Client" },
   { url: "https://github.com/Chirag-Sai-Panuganti/ReLMXEL" },
+  { url: "https://github.com/GandholiSarat/kv-cache-visualizer"}
 ];
 
 // Array of mentor profiles for the Mentors section
