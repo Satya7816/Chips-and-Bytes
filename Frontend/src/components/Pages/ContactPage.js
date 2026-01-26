@@ -14,7 +14,7 @@
  * @returns {JSX.Element}
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './ContactPage.css';
 import '../../style.css';
 
@@ -30,7 +30,7 @@ const ContactPage = () => {
   const [statusMessage, setStatusMessage] = useState(null);
 
   // Validate on demand
-  const validate = () => {
+  const validate = useCallback(() => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Name is required.';
     if (!formData.email.trim()) {
@@ -40,7 +40,7 @@ const ContactPage = () => {
     }
     if (!formData.message.trim()) newErrors.message = 'Message cannot be empty.';
     return newErrors;
-  };
+  }, [formData]);
 
   // Live validation when fields are touched
   useEffect(() => {

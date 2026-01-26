@@ -15,7 +15,7 @@
  * @returns {JSX.Element}
  */
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { gitLinks } from '../../data/constants';
 import { FaGithub } from 'react-icons/fa';
@@ -83,7 +83,7 @@ const ProjectsPage = () => {
    * Scrolls the carousel left or right by a fixed amount.
    * @param {'left'|'right'} direction
    */
-  const scroll = (direction) => {
+  const scroll = useCallback((direction) => {
     const scrollAmount = isMobile ? (window.innerWidth <= 375 ? 200 : 250) : 320;
     if (sliderRef.current) {
       sliderRef.current.scrollBy({
@@ -91,14 +91,14 @@ const ProjectsPage = () => {
         behavior: 'smooth',
       });
     }
-  };
+  }, [isMobile]);
 
   // Touch handlers for mobile swipe
   const handleTouchStart = (e) => {
     setTouchStart(e.touches[0].clientX);
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = useCallback((e) => {
     if (!touchStart) return;
     const currentTouch = e.touches[0].clientX;
     const diff = touchStart - currentTouch;
@@ -110,7 +110,7 @@ const ProjectsPage = () => {
       }
       setTouchStart(null);
     }
-  };
+  }, [touchStart, canScrollRight, canScrollLeft, scroll]);
 
   const handleTouchEnd = () => {
     setTouchStart(null);
