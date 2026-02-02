@@ -45,6 +45,51 @@ export const gitLinks = [
   { url: "https://github.com/GandholiSarat/kv-cache-visualizer"}
 ];
 
+// Active projects (detailed data for active projects view)
+export const activeProjects = [
+  {
+    id: 'a1',
+    title: 'Realtime KV Cache Visualizer',
+    description: 'Interactive visualizer for key-value cache behavior used for teaching and analysis.',
+    author: 'Gandholi Sarat',
+    linkedin: 'https://www.linkedin.com/in/gandholi-sarat/',
+    url: 'https://github.com/GandholiSarat/kv-cache-visualizer'
+  },
+  {
+    id: 'a2',
+    title: 'DynamoRIO Custom Client',
+    description: 'Custom DynamoRIO client for instrumentation and dynamic analysis experiments.',
+    author: 'Gandholi Sarat',
+    linkedin: 'https://www.linkedin.com/in/gandholi-sarat/',
+    url: 'https://github.com/GandholiSarat/DynamoRIO-Custom-Client'
+  }
+  ,
+  {
+    id: 'a3',
+    title: 'ReLMXEL',
+    description: 'A register-level memory explorer to profile memory access patterns.',
+    author: 'Panuganti Chirag Sai',
+    linkedin: 'https://www.linkedin.com/in/panuganti-chirag-sai/',
+    url: 'https://github.com/Chirag-Sai-Panuganti/ReLMXEL'
+  },
+  {
+    id: 'a4',
+    title: 'GPU vs CPU Visualizer',
+    description: 'Educational tool comparing GPU and CPU pipeline performance on small kernels.',
+    author: 'Sai Saketh',
+    linkedin: '',
+    url: 'https://github.com/example/gpu-cpu-visualizer'
+  },
+  {
+    id: 'a5',
+    title: 'CacheSim Mini',
+    description: 'Lightweight cache simulator for classroom demonstrations and experiments.',
+    author: 'K Sharat',
+    linkedin: 'https://www.linkedin.com/in/k-sharat/',
+    url: 'https://github.com/example/cachesim-mini'
+  }
+];
+
 // Array of mentor profiles for the Mentors section
 export const mentors = [
   {

@@ -30,6 +30,7 @@ const sectionMap = {
   about: 'about-us',
   events: 'events-section',
   projects: 'projects-section',
+  'projects-active': 'active-projects-section',
   blogs: 'blogs-section',
   members: 'members-section',
   mentors: 'mentors-section',
@@ -44,6 +45,7 @@ const sectionMap = {
  */
 const Navbar = ({ activeTab, setActiveTab, navigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProjectsOpen, setIsProjectsOpen] = useState(false);
   const location = useLocation();
 
   // Update active tab based on route changes
@@ -63,8 +65,9 @@ const Navbar = ({ activeTab, setActiveTab, navigate }) => {
    * @param {string} id - Section or page identifier
    */
   const handleNavClick = (id) => {
-    setActiveTab(id); 
+    setActiveTab(id);
     setIsMobileMenuOpen(false);
+    setIsProjectsOpen(false);
 
     if (id === 'home') {
       if (location.pathname === '/') {
@@ -120,6 +123,9 @@ const Navbar = ({ activeTab, setActiveTab, navigate }) => {
       if (isMobileMenuOpen && !event.target.closest('.navbar')) {
         setIsMobileMenuOpen(false);
       }
+      if (isProjectsOpen && !event.target.closest('.projects-dropdown-wrapper')) {
+        setIsProjectsOpen(false);
+      }
     };
     const handleScroll = () => {
       if (isMobileMenuOpen) setIsMobileMenuOpen(false);
@@ -131,6 +137,11 @@ const Navbar = ({ activeTab, setActiveTab, navigate }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [isMobileMenuOpen]);
+
+  // Close projects dropdown when route changes
+  useEffect(() => {
+    setIsProjectsOpen(false);
+  }, [location.pathname]);
 
   // Detect and highlight active section on scroll (home page only)
   useEffect(() => {
@@ -211,12 +222,33 @@ const Navbar = ({ activeTab, setActiveTab, navigate }) => {
             { id: 'home', label: 'Home' },
             { id: 'about', label: 'About Us' },
             { id: 'members', label: 'Members'},
-            { id: 'events', label: 'Events' },
-            { id: 'projects', label: 'Projects' },
-            { id: 'blogs', label: 'Blogs' },
-            { id: 'mentors', label: 'Mentors' },
-            { id: 'contact', label: 'Contact Us' }
+            { id: 'events', label: 'Events' }
           ].map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => handleNavClick(id)}
+              className={`nav-button ${activeTab === id ? 'active' : ''}`}
+            >
+              {label}
+            </button>
+          ))}
+
+          {/* Projects Dropdown */}
+          <div className={`projects-dropdown-wrapper ${isProjectsOpen ? 'open' : ''}`}>
+            <button
+              className={`nav-button ${(activeTab === 'projects' || activeTab === 'projects-active') ? 'active' : ''}`}
+              onClick={(e) => { e.stopPropagation(); setIsProjectsOpen(prev => !prev); }}
+              aria-expanded={isProjectsOpen}
+            >
+              Projects ▾
+            </button>
+            <div className="projects-dropdown" role="menu">
+              <button onClick={() => handleNavClick('projects-active')} className="dropdown-item">Active Projects</button>
+              <button onClick={() => handleNavClick('projects')} className="dropdown-item">Projects Archived</button>
+            </div>
+          </div>
+
+          {[{ id: 'blogs', label: 'Blogs' },{ id: 'mentors', label: 'Mentors' },{ id: 'contact', label: 'Contact Us' }].map(({ id, label }) => (
             <button
               key={id}
               onClick={() => handleNavClick(id)}
@@ -247,7 +279,8 @@ const Navbar = ({ activeTab, setActiveTab, navigate }) => {
             { id: 'about', label: 'About Us' },
             { id: 'members', label: 'Members' },
             { id: 'events', label: 'Events' },
-            { id: 'projects', label: 'Projects' },
+            { id: 'projects-active', label: 'Active Projects' },
+            { id: 'projects', label: 'Projects Archived' },
             { id: 'blogs', label: 'Blogs' },
             { id: 'mentors', label: 'Mentors' },
             { id: 'contact', label: 'Contact Us' }

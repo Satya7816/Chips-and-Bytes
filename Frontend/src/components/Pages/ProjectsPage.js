@@ -17,7 +17,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { gitLinks } from '../../data/constants';
+import { gitLinks, activeProjects } from '../../data/constants';
 import { FaGithub } from 'react-icons/fa';
 import './ProjectsPage.css';
 import '../../style.css';
@@ -241,8 +241,8 @@ const ProjectsPage = () => {
           </div>
 
           <div className="read-more-container">
-            <Link to="/Projects/details" className="read-more-link">
-              View All Projects →
+            <Link to="/projects/details" className="read-more-link">
+              View All Archived Projects →
             </Link>
           </div>
         </>

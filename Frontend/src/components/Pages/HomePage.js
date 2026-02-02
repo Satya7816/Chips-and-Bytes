@@ -21,6 +21,7 @@ import './HomePage.css';
 import AboutPage from './AboutPage';
 import EventsPage from './EventsPage';
 import ProjectsPage from './ProjectsPage';
+import ActiveProjectsPage from './ActiveProjectsPage';
 import BlogsPage from './BlogsPage';
 import MentorsPage from './MentorsPage';
 import ContactPage from './ContactPage';
@@ -96,6 +97,9 @@ const HomePage = () => {
       </div>
       <div id="events-section" className="tab-section-container">
         <EventsPage />
+      </div>
+      <div id="active-projects-section" className="tab-section-container">
+        <ActiveProjectsPage />
       </div>
       <div id="projects-section" className="tab-section-container">
         <ProjectsPage />
