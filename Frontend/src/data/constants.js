@@ -172,6 +172,15 @@ export const members = [
     image: '/images/Balaji.png',
     linkedin: 'https://www.linkedin.com/in/satya-balaji-animireddy/'
   },
+
+  {
+    name: 'Abhinay Kumar',
+    designation: 'I M.Tech CS at SSSIHL',
+    summary: 'Member of the Club',
+    image: '/images/ABHINAY.jpg',
+    linkedin: 'https://www.linkedin.com/in/abhinay-kumar-chauhan/'
+  },
+  
   {
     name: 'Cherukuri Sai Saketh',
     designation: 'II M.Sc Mathematics at SSSIHL',
@@ -228,5 +237,7 @@ export const members = [
     image: '/images/Subhashish.png',
     linkedin: 'https://www.linkedin.com/in/subhasish-charan-behera-a43b6b254/'
   },
+
+
   
 ];
