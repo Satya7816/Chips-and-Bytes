@@ -136,7 +136,7 @@ const Navbar = ({ activeTab, setActiveTab, navigate }) => {
       document.removeEventListener('click', handleClickOutside);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isProjectsOpen]);
 
   // Close projects dropdown when route changes
   useEffect(() => {
