@@ -87,12 +87,38 @@ const Navbar = ({ activeTab, setActiveTab, navigate }) => {
       return;
     }
 
-    if (id === 'projects' && !location.pathname.startsWith('/projects')) {
-      navigate('/');
-      setTimeout(() => {
-        const section = document.getElementById('projects-section');
+    if (id === 'projects') {
+      // Archived Projects: send to the full projects page and scroll to archived section
+      if (!location.pathname.startsWith('/projects/active')) {
+        navigate('/projects/active');
+        setTimeout(() => {
+          const section = document.getElementById('archived-projects-section');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }, 250);
+      } else {
+        const section = document.getElementById('archived-projects-section');
         if (section) section.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      }
+      return;
+    }
+
+    if (id === 'projects-active') {
+      // Active Projects: navigate to full page and scroll to active section
+      if (location.pathname === '/') {
+        setTimeout(() => {
+          const section = document.getElementById('active-projects-section');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      } else if (!location.pathname.startsWith('/projects/active')) {
+        navigate('/projects/active');
+        setTimeout(() => {
+          const section = document.getElementById('active-projects-section');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }, 250);
+      } else {
+        const section = document.getElementById('active-projects-section');
+        if (section) section.scrollIntoView({ behavior: 'smooth' });
+      }
       return;
     }
 
@@ -244,7 +270,7 @@ const Navbar = ({ activeTab, setActiveTab, navigate }) => {
             </button>
             <div className="projects-dropdown" role="menu">
               <button onClick={() => handleNavClick('projects-active')} className="dropdown-item">Active Projects</button>
-              <button onClick={() => handleNavClick('projects')} className="dropdown-item">Projects Archived</button>
+              <button onClick={() => handleNavClick('projects')} className="dropdown-item">Archived Projects</button>
             </div>
           </div>
 

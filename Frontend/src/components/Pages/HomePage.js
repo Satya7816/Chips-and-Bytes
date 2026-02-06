@@ -20,7 +20,6 @@ import { Cpu } from 'lucide-react';
 import './HomePage.css';
 import AboutPage from './AboutPage';
 import EventsPage from './EventsPage';
-import ProjectsPage from './ProjectsPage';
 import ActiveProjectsPage from './ActiveProjectsPage';
 import BlogsPage from './BlogsPage';
 import MentorsPage from './MentorsPage';
@@ -101,9 +100,7 @@ const HomePage = () => {
       <div id="active-projects-section" className="tab-section-container">
         <ActiveProjectsPage />
       </div>
-      <div id="projects-section" className="tab-section-container">
-        <ProjectsPage />
-      </div>
+      
       <div id="blogs-section" className="tab-section-container">
         <BlogsPage />
       </div>

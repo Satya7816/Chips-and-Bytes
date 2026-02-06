@@ -1,2 +1,4 @@
 .env
 .env.local
+# React build output
+build/

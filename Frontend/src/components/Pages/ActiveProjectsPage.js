@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { activeProjects } from '../../data/constants';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import './ProjectsPage.css';
 
 const ActiveProjectsPage = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  // const [expanded] = useState({});
   const [touchStart, setTouchStart] = useState(null);
   const sliderRef = useRef(null);
 
@@ -45,6 +46,10 @@ const ActiveProjectsPage = () => {
   }, [touchStart, canScrollLeft, canScrollRight, scroll]);
   const handleTouchEnd = () => setTouchStart(null);
 
+  // const toggleExpand = (id) => {
+  //   setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+  // };
+
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -67,6 +72,37 @@ const ActiveProjectsPage = () => {
     };
   }, [isMobile, touchStart, canScrollLeft, canScrollRight, handleTouchMove]);
 
+  // show only first 5 projects on the home preview
+  const previewProjects = activeProjects.slice(0, 5);
+
+  const renderAuthors = (proj) => {
+    // support either `author`/`linkedin` fields or arrays `authors` with `linkedin` array/object
+    if (Array.isArray(proj.authors) && proj.authors.length) {
+      return proj.authors.map((a, i) => (
+        <span key={i} className="author-item">
+          {a.name || a}
+          {a.linkedin ? (
+            <a href={a.linkedin} target="_blank" rel="noreferrer" className="linkedin-icon" aria-label={`LinkedIn for ${a.name || a}`}>
+              <FaLinkedin size={14} />
+            </a>
+          ) : null}
+          {i < proj.authors.length - 1 ? ', ' : ''}
+        </span>
+      ));
+    }
+    // fallback to legacy single author fields
+    return (
+      <>
+        {proj.author}
+        {proj.linkedin ? (
+          <a href={proj.linkedin} target="_blank" rel="noreferrer" className="linkedin-icon" aria-label={`LinkedIn for ${proj.author}`}>
+            <FaLinkedin size={14} />
+          </a>
+        ) : null}
+      </>
+    );
+  };
+
   return (
     <div className="Projects-page">
       <h1 className="tab-heading">Active Projects</h1>
@@ -80,38 +116,31 @@ const ActiveProjectsPage = () => {
         )}
 
         <div className={`blog-slider ${isMobile ? 'mobile-slider' : ''}`} ref={sliderRef}>
-          {activeProjects.map((proj, idx) => (
-            <div className={`Projects-card ${isMobile ? 'mobile-card' : ''}`} key={proj.id || idx}>
-              <div className="cards-content">
-                <div className="text-content">
-                  <h3 className="Projects-title">{proj.title}</h3>
-                  <p className="Projects-description">{proj.description}</p>
-                  <p className="project-author">By: {proj.author} • <a href={proj.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></p>
-                  <a href={proj.url} target="_blank" rel="noopener noreferrer" className="continue-link" aria-label={`Repo for ${proj.title}`}>
-                    <FaGithub size={20} style={{ marginRight: '8px' }} />View Repo
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+              {previewProjects.map((proj, idx) => {
+            const idKey = proj.id || idx;
+            // const isExpanded = !!expanded[idKey];
+            // const showToggle = proj.description && proj.description.length > 200; // heuristic
+            return (
+              <article className={`project-article ${isMobile ? 'mobile-article' : ''}`} key={idKey}>
+                <header>
+                  <h3 className="project-title">{proj.title}</h3>
+                </header>
 
-          {/* More... card */}
-          <div className={`Projects-card more-card ${isMobile ? 'mobile-card' : ''}`}>
-            <Link to="/projects/active" className="more-card-link">
-              <div className="card-content more-card-content">
-                <div className="more-card-inner">
-                  <div className="more-icon">
-                    <svg width={isMobile ? "50" : "70"} height={isMobile ? "50" : "70"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><circle cx="12" cy="5" r="3"></circle><circle cx="12" cy="19" r="3"></circle></svg>
-                  </div>
-                  <h3 className="more-title">More...</h3>
-                  <p className="more-description">Explore all active projects and contributors</p>
-                  <div className="more-arrow">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7,7 17,7 17,17"></polyline></svg>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
+                <p id={`proj-desc-${idKey}`} className={`project-about clamped`}>{proj.description}</p>
+
+                <footer className="project-meta">
+                  <p className="project-author">By: {renderAuthors(proj)}</p>
+                  {proj.url ? (
+                    <a href={proj.url} target="_blank" rel="noopener noreferrer" className="repo-link" aria-label={`Repo for ${proj.title}`}>
+                      <FaGithub size={20} style={{ marginRight: '8px' }} />Repo
+                    </a>
+                  ) : null}
+                </footer>
+              </article>
+            );
+          })}
+
+          {/* removed More... article per request */}
         </div>
 
         {canScrollRight && (
@@ -122,7 +151,7 @@ const ActiveProjectsPage = () => {
       </div>
 
       <div className="read-more-container">
-        <Link to="/projects/active" className="read-more-link">View All Active Projects →</Link>
+        <Link to="/projects/active#active" className="read-more-link">View All Active Projects →</Link>
       </div>
     </div>
   );
