@@ -8,7 +8,6 @@ const ActiveProjectsPage = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  // const [expanded] = useState({});
   const [touchStart, setTouchStart] = useState(null);
   const sliderRef = useRef(null);
 
@@ -46,9 +45,7 @@ const ActiveProjectsPage = () => {
   }, [touchStart, canScrollLeft, canScrollRight, scroll]);
   const handleTouchEnd = () => setTouchStart(null);
 
-  // const toggleExpand = (id) => {
-  //   setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
-  // };
+ 
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -118,8 +115,6 @@ const ActiveProjectsPage = () => {
         <div className={`blog-slider ${isMobile ? 'mobile-slider' : ''}`} ref={sliderRef}>
               {previewProjects.map((proj, idx) => {
             const idKey = proj.id || idx;
-            // const isExpanded = !!expanded[idKey];
-            // const showToggle = proj.description && proj.description.length > 200; // heuristic
             return (
               <article className={`project-article ${isMobile ? 'mobile-article' : ''}`} key={idKey}>
                 <header>

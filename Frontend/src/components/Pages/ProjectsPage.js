@@ -16,7 +16,6 @@
  */
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-// import { Link } from 'react-router-dom';
 import { gitLinks } from '../../data/constants';
 import { FaGithub } from 'react-icons/fa';
 import './ProjectsPage.css';

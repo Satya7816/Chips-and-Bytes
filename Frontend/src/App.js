@@ -24,7 +24,6 @@ import BlogsPage from './components/Pages/BlogsPage';
 import BlogsDetailsPage from './components/Page-Contents/BlogsDetailsPage';
 import ProjectsPage from './components/Pages/ProjectsPage';
 import ProjectsDetailsPage from './components/Page-Contents/ProjectsDetailsPage';
-// import ActiveProjectsPage from './components/Pages/ActiveProjectsPage';
 import ActiveProjectsFullPage from './components/Pages/ActiveProjectsFullPage';
 import EventsPage from './components/Pages/EventsPage';
 import EventDetailsPage from './components/Page-Contents/EventsDetailsPage';

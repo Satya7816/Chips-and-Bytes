@@ -134,11 +134,20 @@
   gap: 0.75rem;
   justify-content: space-between;
   /* enforce consistent height for alignment */
-  min-height: clamp(220px, 30vh, 360px);
+  /* min-height: clamp(220px, 30vh, 360px); */
   will-change: transform, box-shadow;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translateZ(0);
+
+    height: auto;
+  min-height: unset;
+
+  display: flex;
+  flex-direction: column;
+
+    width: 100%;
+  max-width: min(820px, 95vw);
 }
 
 /* Mobile card sizing */
@@ -150,8 +159,15 @@
 
 .project-article header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 0.75rem;
+
+  /* 🔑 CRITICAL FIX */
+  flex-wrap: wrap;
+
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .project-title {
@@ -160,6 +176,14 @@
   color: #22d3ee;
   margin: 0;
   line-height: 1.2;
+
+  white-space: normal;      /* allow wrapping */
+  word-break: break-word;   /* break very long words */
+  overflow: visible;        /* no clipping */
+  line-height: 1.25;
+    
+  flex: 1 1 100%;   /* take full row */
+  min-width: 0;     /* REQUIRED for flex text wrapping */
 }
 
 .project-about {
@@ -321,18 +345,7 @@
   gap: clamp(0.5rem, 2vw, 0.75rem);
 }
 
-.Projects-card .Projects-title {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  font-weight: 700;
-  color: #22d3ee !important;
-  margin-bottom: clamp(0.5rem, 1.5vw, 0.75rem);
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  letter-spacing: -0.01em;
-}
+
 
 .Projects-card .Projects-description {
   font-size: clamp(0.85rem, 2vw, 0.95rem);
@@ -581,6 +594,17 @@
   }
 }
 
+@media (max-width: 768px) {
+  .project-article {
+    max-width: 92vw;
+    padding: 1rem;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+  }
+}
+
 /* Mobile-specific responsive breakpoints */
 @media (max-width: 768px) {
   .mobile-swipe-hint {
@@ -592,8 +616,8 @@
   }
   
   .Projects-slider {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 0 rem;
+    padding-right: 0 rem;
   }
   
   /* Make scroll arrows more mobile-friendly */
@@ -695,6 +719,7 @@
 .ActiveProjectsFull-page {
   padding: clamp(1rem, 3vw, 2rem);
 }
+
 
 .active-projects-full-list {
   display: grid;
@@ -859,3 +884,105 @@
 
 /* Remove card-like background from full-page items to honor 'no cards' */
 .active-project-item { background: transparent; }
+
+
+/* 🔥 FORCE full title for Active Projects cards */
+.project-article .Projects-title,
+.project-article .project-title {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  overflow: visible !important;
+
+  white-space: normal;
+  word-break: break-word;
+}
+
+/*Mobile CONTAINMENT FIX*/
+@media (max-width: 768px) {
+  .project-article {
+    width: 100%;
+    max-width: 100vw;
+    min-width: 0;          /* 🔑 remove forced width */
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+}
+
+
+
+/* Grid consistency */
+.ActiveProjectsFull-page .archived-projects-inline .Projects-slider,
+.ActiveProjectsFull-page .archived-projects-inline .blog-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+
+}
+
+
+/* Fixed card dimensions */
+.ActiveProjectsFull-page .archived-projects-inline .project-article {
+  height: 420px;
+  min-height: 420px;
+  max-height: 420px;
+
+  width: 100%;
+  max-width: 420px;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ActiveProjectsFull-page .archived-projects-inline .image-container {
+  height: 160px;
+  min-height: 160px;
+  max-height: 160px;
+  overflow: hidden;
+}
+.ActiveProjectsFull-page .archived-projects-inline .Projects-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Title clamp */
+.ActiveProjectsFull-page .archived-projects-inline .project-title,
+.ActiveProjectsFull-page .archived-projects-inline .Projects-title {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+}
+
+/* Description clamp */
+.ActiveProjectsFull-page .archived-projects-inline .project-about,
+.ActiveProjectsFull-page .archived-projects-inline .Projects-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ActiveProjectsFull-page .archived-projects-inline .text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ActiveProjectsFull-page .archived-projects-inline .repo-link,
+.ActiveProjectsFull-page .archived-projects-inline .Projects-read-link {
+  margin-top: auto; /* 🔑 button always at bottom */
+}
+
+
+/* Mobile: keep same-height cards */
+@media (max-width: 768px) {
+  .ActiveProjectsFull-page .archived-projects-inline .project-article {
+    height: 380px;
+    min-height: 380px;
+  }
+} 
+
+
